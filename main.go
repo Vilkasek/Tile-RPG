@@ -1,16 +1,21 @@
 package main
 
-import rl "github.com/gen2brain/raylib-go/raylib"
+import (
+	"tiled/actors"
 
-var player rl.Texture2D
+	rl "github.com/gen2brain/raylib-go/raylib"
+)
+
+var player actors.Player
 
 func init() {
 	rl.InitWindow(1280, 720, "TileRPG")
 
-	player = rl.LoadTexture("./assets/graphics/player.png")
+	player.Init("./assets/graphics/player.png", 0, 0)
 }
 
 func update() {
+	player.Update()
 }
 
 func render() {
@@ -18,12 +23,14 @@ func render() {
 
 	rl.ClearBackground(rl.Black)
 
-	rl.DrawTexture(player, 100, 100, rl.White)
+	player.Render()
 
 	rl.EndDrawing()
 }
 
 func deinit() {
+	player.Deinit()
+
 	rl.CloseWindow()
 }
 
