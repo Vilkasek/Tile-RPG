@@ -11,7 +11,7 @@ var player actors.Player
 func init() {
 	rl.InitWindow(1280, 720, "TileRPG")
 
-	player.Init("./assets/graphics/player.png", 0, 0)
+	player.Init("./assets/graphics/player.png", 0, 600)
 }
 
 func update() {

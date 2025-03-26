@@ -8,11 +8,25 @@ type Player struct {
 }
 
 func (p *Player) Init(path string, x int, y int) {
-  p.Texture = rl.LoadTexture(path)
-  p.Position = rl.Vector2{X: float32(x), Y: float32(y)}
+	p.Texture = rl.LoadTexture(path)
+	p.Position = rl.Vector2{X: float32(x), Y: float32(y)}
+}
+
+func (p *Player) handle_input() {
+	// TODO: Add movement
+	if rl.IsKeyPressed(rl.KeyW) {
+		p.Position.Y -= 32
+	} else if rl.IsKeyPressed(rl.KeyS) {
+		p.Position.Y += 32
+	} else if rl.IsKeyPressed(rl.KeyA) {
+		p.Position.X -= 32
+	} else if rl.IsKeyPressed(rl.KeyD) {
+		p.Position.X += 32
+	}
 }
 
 func (p *Player) Update() {
+	p.handle_input()
 }
 
 func (p *Player) Render() {
@@ -20,5 +34,5 @@ func (p *Player) Render() {
 }
 
 func (p *Player) Deinit() {
-  rl.UnloadTexture(p.Texture)
+	rl.UnloadTexture(p.Texture)
 }
