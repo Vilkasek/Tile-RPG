@@ -12,7 +12,7 @@ func update() {
 func render() {
 	rl.BeginDrawing()
 
-	rl.ClearBackground(rl.RayWhite)
+	rl.ClearBackground(rl.Black)
 
 	rl.EndDrawing()
 }
