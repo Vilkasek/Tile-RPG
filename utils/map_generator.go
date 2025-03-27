@@ -1,3 +1,4 @@
+// TODO: Add to game generation for map on tilemap with size: 32 x 16
 package utils
 
 import (
