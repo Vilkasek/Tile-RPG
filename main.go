@@ -9,8 +9,9 @@ import (
 )
 
 var (
-	player actors.Player
-	ui     userinterface.UI
+	player        actors.Player
+	ui            userinterface.UI
+	generated_map utils.MapGenerator
 
 	base_res rl.Vector2
 )
@@ -29,6 +30,7 @@ func init() {
 		int(288*utils.Get_Scale()),
 	)
 	ui.Init("./assets/graphics/UI-Background.png", 0, 0)
+	generated_map.Init("./assets/graphics/Tiles.png")
 }
 
 func update() {
@@ -41,8 +43,9 @@ func render() {
 
 	rl.ClearBackground(rl.Black)
 
-	player.Render()
 	ui.Render()
+	generated_map.Render()
+	player.Render()
 
 	rl.EndDrawing()
 }
