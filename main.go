@@ -11,7 +11,7 @@ import (
 var (
 	player        actors.Player
 	ui            userinterface.UI
-	generated_map utils.MapGenerator
+	generated_map utils.Tilemap
 
 	base_res rl.Vector2
 )
@@ -43,8 +43,8 @@ func render() {
 
 	rl.ClearBackground(rl.Black)
 
-	ui.Render()
 	generated_map.Render()
+	ui.Render()
 	player.Render()
 
 	rl.EndDrawing()
