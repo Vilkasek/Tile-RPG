@@ -13,7 +13,6 @@ func (p *Player) Init(path string, x int, y int) {
 }
 
 func (p *Player) handle_input() {
-	// TODO: Add movement
 	if rl.IsKeyPressed(rl.KeyW) {
 		p.Position.Y -= 32
 	} else if rl.IsKeyPressed(rl.KeyS) {
