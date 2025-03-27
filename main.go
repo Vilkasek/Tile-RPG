@@ -9,9 +9,9 @@ import (
 )
 
 var (
-	player        actors.Player
-	ui            userinterface.UI
-	generated_map utils.Tilemap
+	player  actors.Player
+	ui      userinterface.UI
+	tilemap utils.Tilemap
 
 	base_res rl.Vector2
 )
@@ -30,11 +30,11 @@ func init() {
 		int(288*utils.Get_Scale()),
 	)
 	ui.Init("./assets/graphics/UI-Background.png", 0, 0)
-	generated_map.Init("./assets/graphics/Tiles.png")
+	tilemap.Init("./assets/graphics/Tiles.png")
 }
 
 func update() {
-	player.Update()
+	player.Update(&tilemap)
 	ui.Update()
 }
 
@@ -43,7 +43,7 @@ func render() {
 
 	rl.ClearBackground(rl.Black)
 
-	generated_map.Render()
+	tilemap.Render()
 	ui.Render()
 	player.Render()
 

@@ -1,6 +1,7 @@
 package actors
 
 import (
+	"fmt"
 	"tiled/utils"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -32,7 +33,7 @@ func (p *Player) clamp_player() {
 	}
 }
 
-func (p *Player) handle_input() {
+func (p *Player) handle_input(t *utils.Tilemap) {
 	if rl.IsKeyPressed(rl.KeyW) {
 		p.Position.Y -= 32 * utils.Get_Scale()
 	} else if rl.IsKeyPressed(rl.KeyS) {
@@ -44,10 +45,30 @@ func (p *Player) handle_input() {
 	}
 
 	p.clamp_player()
+
+	if rl.IsKeyPressed(rl.KeySpace) {
+		tileX := int(p.Position.X / (32 * utils.Get_Scale()))
+		tileY := int(p.Position.Y / (32 * utils.Get_Scale()))
+
+		switch value := t.Get_Tile_Value(tileX, tileY); value {
+		case 1:
+			utils.Add_Fiber(5)
+		case 2:
+			utils.Add_Stone(5)
+		case 3:
+			utils.Add_Wood(5)
+		}
+
+		t.Set_Tile_Value(tileX, tileY, 0)
+
+		fmt.Println(utils.Get_Fiber())
+		fmt.Println(utils.Get_Stone())
+		fmt.Println(utils.Get_Wood())
+	}
 }
 
-func (p *Player) Update() {
-	p.handle_input()
+func (p *Player) Update(t *utils.Tilemap) {
+	p.handle_input(t)
 }
 
 func (p *Player) Render() {

@@ -40,6 +40,14 @@ func (m *Tilemap) handle_tiles(i int, j int) {
 	}
 }
 
+func (m *Tilemap) Get_Tile_Value(i, j int) int {
+	return *&m.Grid[i][j]
+}
+
+func (m *Tilemap) Set_Tile_Value(i, j, v int) {
+	m.Grid[i][j] = v
+}
+
 func (m *Tilemap) Render() {
 	var destRecs []rl.Rectangle
 	var sourceRecs []rl.Rectangle
