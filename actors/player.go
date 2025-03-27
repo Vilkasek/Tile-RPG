@@ -16,17 +16,7 @@ func (p *Player) Init(path string, x int, y int) {
 	p.Position = rl.Vector2{X: float32(x), Y: float32(y)}
 }
 
-func (p *Player) handle_input() {
-	if rl.IsKeyPressed(rl.KeyW) {
-		p.Position.Y -= 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyS) {
-		p.Position.Y += 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyA) {
-		p.Position.X -= 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyD) {
-		p.Position.X += 32 * utils.Get_Scale()
-	}
-
+func (p *Player) clamp_player() {
 	if p.Position.Y <= 0 {
 		p.Position.Y = 0
 	}
@@ -40,6 +30,20 @@ func (p *Player) handle_input() {
 	if p.Position.X+float32(p.Texture.Width)*utils.Get_Scale() >= float32(rl.GetScreenWidth()) {
 		p.Position.X = float32(rl.GetScreenWidth()) - float32(p.Texture.Width)*utils.Get_Scale()
 	}
+}
+
+func (p *Player) handle_input() {
+	if rl.IsKeyPressed(rl.KeyW) {
+		p.Position.Y -= 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyS) {
+		p.Position.Y += 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyA) {
+		p.Position.X -= 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyD) {
+		p.Position.X += 32 * utils.Get_Scale()
+	}
+
+	p.clamp_player()
 }
 
 func (p *Player) Update() {
