@@ -13,14 +13,18 @@ var (
 )
 
 func init() {
-	base_res = rl.Vector2{X: 1280, Y: 720}
+	base_res = rl.Vector2{X: 1024, Y: 576}
 
 	rl.SetConfigFlags(rl.FlagFullscreenMode | rl.FlagWindowResizable)
 	rl.InitWindow(int32(rl.GetScreenWidth()), int32(rl.GetScreenHeight()), "TileRPG")
 
 	utils.Set_Scale(float32(rl.GetScreenWidth()) / base_res.X)
 
-	player.Init("./assets/graphics/player.png", 0, 600)
+	player.Init(
+		"./assets/graphics/player.png",
+		int(256*utils.Get_Scale()),
+		int(64*utils.Get_Scale()),
+	)
 }
 
 func update() {

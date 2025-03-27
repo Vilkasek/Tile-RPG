@@ -17,8 +17,8 @@ func (p *Player) Init(path string, x int, y int) {
 }
 
 func (p *Player) clamp_player() {
-	if p.Position.Y <= 0 {
-		p.Position.Y = 0
+	if p.Position.Y <= 64*utils.Get_Scale() {
+		p.Position.Y = 64 * utils.Get_Scale()
 	}
 	if p.Position.Y+float32(p.Texture.Height)*utils.Get_Scale() >= float32(rl.GetScreenHeight()) {
 		p.Position.Y = float32(rl.GetScreenHeight()) - float32(p.Texture.Height)*utils.Get_Scale()
