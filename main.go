@@ -25,15 +25,15 @@ func init() {
 
 	player.Init(
 		"./assets/graphics/player.png",
-		int(256*utils.Get_Scale()),
-		int(64*utils.Get_Scale()),
+		int(512*utils.Get_Scale()),
+		int(288*utils.Get_Scale()),
 	)
-  ui.Init("./assets/graphics/UI-Background.png", 0, 0)
+	ui.Init("./assets/graphics/UI-Background.png", 0, 0)
 }
 
 func update() {
 	player.Update()
-  ui.Update()
+	ui.Update()
 }
 
 func render() {
@@ -42,15 +42,15 @@ func render() {
 	rl.ClearBackground(rl.Black)
 
 	player.Render()
-  ui.Render()
+	ui.Render()
 
 	rl.EndDrawing()
 }
 
 func deinit() {
 	player.Deinit()
-  ui.Deinit()
-  
+	ui.Deinit()
+
 	rl.CloseWindow()
 }
 
