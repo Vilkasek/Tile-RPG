@@ -11,7 +11,7 @@ type UI struct {
 	Position rl.Vector2
 }
 
-func (u *UI) Init(path string, x int, y int) {
+func (u *UI) Init(path, icon string, x int, y int) {
 	u.Texture = rl.LoadTexture(path)
 	u.Position = rl.Vector2{X: float32(x), Y: float32(y)}
 }

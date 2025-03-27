@@ -25,11 +25,11 @@ func init() {
 	utils.Set_Scale(float32(rl.GetScreenWidth()) / base_res.X)
 
 	player.Init(
-		"./assets/graphics/player.png",
+		"./assets/graphics/Player.png",
 		int(512*utils.Get_Scale()),
 		int(288*utils.Get_Scale()),
 	)
-	ui.Init("./assets/graphics/UI-Background.png", 0, 0)
+	ui.Init("./assets/graphics/UI-Background.png", "./assets/graphics/Icons.png", 0, 0)
 	tilemap.Init("./assets/graphics/Tiles.png")
 }
 
