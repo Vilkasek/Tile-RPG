@@ -1,7 +1,6 @@
 package actors
 
 import (
-	"fmt"
 	"tiled/utils"
 
 	rl "github.com/gen2brain/raylib-go/raylib"
@@ -33,19 +32,7 @@ func (p *Player) clamp_player() {
 	}
 }
 
-func (p *Player) handle_input(t *utils.Tilemap) {
-	if rl.IsKeyPressed(rl.KeyW) {
-		p.Position.Y -= 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyS) {
-		p.Position.Y += 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyA) {
-		p.Position.X -= 32 * utils.Get_Scale()
-	} else if rl.IsKeyPressed(rl.KeyD) {
-		p.Position.X += 32 * utils.Get_Scale()
-	}
-
-	p.clamp_player()
-
+func (p *Player) collect_resources(t *utils.Tilemap) {
 	if rl.IsKeyPressed(rl.KeySpace) {
 		tileX := int(p.Position.X / (32 * utils.Get_Scale()))
 		tileY := int(p.Position.Y / (32 * utils.Get_Scale()))
@@ -60,11 +47,23 @@ func (p *Player) handle_input(t *utils.Tilemap) {
 		}
 
 		t.Set_Tile_Value(tileX, tileY, 0)
-
-		fmt.Println(utils.Get_Fiber())
-		fmt.Println(utils.Get_Stone())
-		fmt.Println(utils.Get_Wood())
 	}
+}
+
+func (p *Player) handle_input(t *utils.Tilemap) {
+	if rl.IsKeyPressed(rl.KeyW) {
+		p.Position.Y -= 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyS) {
+		p.Position.Y += 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyA) {
+		p.Position.X -= 32 * utils.Get_Scale()
+	} else if rl.IsKeyPressed(rl.KeyD) {
+		p.Position.X += 32 * utils.Get_Scale()
+	}
+
+	p.clamp_player()
+
+	p.collect_resources(t)
 }
 
 func (p *Player) Update(t *utils.Tilemap) {
