@@ -16,7 +16,7 @@ var (
 	base_res rl.Vector2
 )
 
-func init() {
+func init_game() {
 	base_res = rl.Vector2{X: 1024, Y: 576}
 
 	rl.SetConfigFlags(rl.FlagFullscreenMode | rl.FlagWindowResizable)
@@ -30,7 +30,7 @@ func init() {
 		int(288*utils.Get_Scale()),
 	)
 	ui.Init("./assets/graphics/UI-Background.png", "./assets/graphics/Icons.png", 0, 0)
-	tilemap.Init("./assets/graphics/Tiles.png")
+	tilemap = *utils.NewTilemap(32, 18, 32, "./assets/graphics/Tiles.png")
 }
 
 func update() {
@@ -58,6 +58,8 @@ func deinit() {
 }
 
 func main() {
+	init_game()
+
 	for !rl.WindowShouldClose() {
 		update()
 		render()
